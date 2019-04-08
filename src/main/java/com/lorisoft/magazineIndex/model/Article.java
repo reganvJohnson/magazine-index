@@ -1,4 +1,4 @@
-package com.programmer.magazineIndex.model;
+package com.lorisoft.magazineIndex.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

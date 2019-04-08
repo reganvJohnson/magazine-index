@@ -1,4 +1,4 @@
-package com.lorisoft.controllers;
+package com.lorisoft.magazineIndex.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,7 @@
-package com.programmer.magazineIndex.model;
+package com.lorisoft.magazineIndex.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

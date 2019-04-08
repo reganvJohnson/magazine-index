@@ -1,4 +1,4 @@
-package com.lorisoft;
+package com.lorisoft.magazineIndex;
 
 import java.util.Arrays;
 
