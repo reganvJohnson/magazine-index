@@ -17,6 +17,4 @@ gradle-app.setting
 .gradletasknamecache
 
 #database
-derby.log
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+

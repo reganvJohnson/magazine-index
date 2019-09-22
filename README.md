@@ -1,2 +1,1 @@
-# magazineIndex
-my own personal re-invented magazine index for my magazines.
+https://spring.io/guides/gs/accessing-data-jpa/
