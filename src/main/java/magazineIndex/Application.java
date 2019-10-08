@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 import magazineIndex.repository.IssueRepository;
 import magazineIndex.repository.PublicationRepository;
-import magazineIndex.entity.Issue;
 import magazineIndex.entity.Publication;
 
 @SpringBootApplication
