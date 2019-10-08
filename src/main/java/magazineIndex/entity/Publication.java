@@ -1,4 +1,4 @@
-package hello;
+package magazineIndex.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,28 +6,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
-public class Hobby {
+public class Publication {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Publication title is mandatory")
     private String title;
     
 //    @OneToOne(cascade=CascadeType.ALL, mappedBy="Customer")
 //    private Customer customer;
  
-    protected Hobby() {}
+    protected Publication() {}
 
-    public Hobby(String title) {
+    public Publication(String title) {
         this.title = title;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Hobby[id=%d, title='%s']",
+                "publication[id=%d, title='%s']",
                 id, title);
     }
 

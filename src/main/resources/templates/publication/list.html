@@ -1,0 +1,23 @@
+<div th:switch="${publications}">
+    <h2 th:case="null">No publications yet!</h2>
+        <div th:case="*">
+            <h2>Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="publication : ${publications}">
+                    <td th:text="${publication.title}"></td>
+                    <td><a th:href="@{/publication/edit/{id}(id=${publication.id})}">Edit</a></td>
+                    <td><a th:href="@{/publication/delete/{id}(id=${publication.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/publication/new">Add a new publication</a></p>
+</div>
