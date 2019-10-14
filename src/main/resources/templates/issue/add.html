@@ -24,9 +24,9 @@
                                 <label for="number" class="col-form-label">Number</label>
                                 <input type="text" th:field="${issue.number}" class="form-control" id="number" placeholder="Number">
 
-                                <select th:field="*{publications}"/>
+                                <select th:field="*{publications}">
                                     <option th:each="publication : ${publications}" th:value="${publication.id}" th:text="${publication.title}"></option>
-
+                                </select>
 
 
                             </div>

@@ -1,6 +1,9 @@
 package magazineIndex.controller;
 
 import javax.validation.Valid;
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -170,12 +173,25 @@ private static final Logger log = LoggerFactory.getLogger(MagazineController.cla
 
     // process result of filled in add form
     @PostMapping("/issue/add")
-    public String newIssue(@Valid Issue issue, BindingResult result, Model model) {
+    public String newIssue(@Valid Issue issue, @Valid List<Publication> publications, BindingResult result, Model model) {
+    	log.info("newIssue called");
+        log.info(issue.toString());
+        
+        for (Publication publication: publications) {
+        	log.info(publication.toString());
+        }
         if (result.hasErrors()) {
+        	log.info("errors were found!!!");
+        	model.addAttribute("issue", new Issue());
+        	model.addAttribute("publications", pRepo.findAll());
             return "issue/add";
         }
-        iRepo.save(issue);
+        log.info("REGAN1");
+        //        iRepo.save(issue);
+        log.info("REGAN2");
         model.addAttribute("issues", iRepo.findAll());
+        log.info("REGAN3");
+
         return "issue/list";
     }
 
