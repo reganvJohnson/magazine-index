@@ -22,8 +22,8 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 dependencies {
 //    compile("org.springframework.boot:spring-boot-starter-parent")

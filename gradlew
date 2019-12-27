@@ -169,4 +169,9 @@ if [ "$(uname)" = "Darwin" ] && [ "$HOME" = "$PWD" ]; then
   cd "$(dirname "$0")"
 fi
 
+echo "BOB"
+echo $JAVACMD
+echo "BOB"
+echo $@
+echo "BOB"
 exec "$JAVACMD" "$@"
