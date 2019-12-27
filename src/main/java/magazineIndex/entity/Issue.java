@@ -1,5 +1,7 @@
 package magazineIndex.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import magazineIndex.entity.Publication;
 
@@ -15,17 +18,18 @@ public class Issue {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String year;
-    private String month;
-    private String number;
+    String year;
+    String month;
+    String number;
 
     //private Long hobbyId;
     @OneToOne
     @JoinColumn(name="PUBLICATION_ID", nullable=true)
-    private Publication publication;
-
+    Publication publication;
+    @OneToMany (mappedBy="issue")
+    List<Article> articles;
     //protected Issue() {}
 
     public Issue() {
@@ -33,21 +37,34 @@ public class Issue {
         setMonth("");
         setNumber("");
         setPublication(null);
+        setArticles(null);
     }
 
-    public Issue(String year, String month, String number, Publication publication) {
+    public Issue(String year, String month, String number, Publication publication, List<Article> articles) {
         setYear(year);
         setMonth(month);
         setNumber(number);
         setPublication(publication);
+        setArticles(articles);
     }
     @Override
     public String toString() {
         return String.format(
-                "Issue[id=%d, year='%s', month='%s', number='%s', publication='%s']",
-                id, year, month, number, publication== null? "something null": publication.getTitle());
+                "Issue[id=%d, year='%s', month='%s', number='%s', publication='%s', articles[%s]]",
+                id, year, month, number, publication== null? "something null": publication.getTitle(),
+                		getArticlesList());
     }
 
+    public String getArticlesList() {
+    	if (articles == null) {
+    		return "no articles";
+    	}
+    	String outStr = "";
+    	for (Article article: articles) {
+    		outStr += article.toString() + " ";
+    	}
+    	return outStr;
+    }
     public Long getId() {
         return id;
     }
@@ -55,7 +72,15 @@ public class Issue {
         this.id = id;
     }
 
-    public String getYear() {
+    public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
+	public String getYear() {
         return year;
     }
 

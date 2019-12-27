@@ -17,9 +17,6 @@ public class Publication {
     @NotBlank(message = "Publication title is mandatory")
     private String title;
     
-//    @OneToOne(cascade=CascadeType.ALL, mappedBy="Customer")
-//    private Customer customer;
- 
     protected Publication() {}
 
     public Publication(String title) {
