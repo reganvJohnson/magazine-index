@@ -4,6 +4,7 @@
 .classpath
 .project
 .settings
+.idea
 /bin/
 /build/
 
@@ -18,3 +19,6 @@ gradle-app.setting
 
 #database
 
+#dumb code
+src/main/resources/templates/seeds.html
+src/main/java/magazineIndex/viewClasses/SeedsView.java

@@ -1,5 +1,6 @@
 package magazineIndex.controller;
 
+import magazineIndex.entity.Article;
 import magazineIndex.entity.Issue;
 import magazineIndex.entity.Publication;
 import magazineIndex.repository.ArticleRepository;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class IssueController {
@@ -105,14 +107,14 @@ public class IssueController {
 
 
     @PostMapping(value = "issue/update/{id}", params = {"addRow"})
-    public String issueAddRow(@PathVariable("id") long id, @Valid Issue issue, Model model) {
+    public String issueAddRow(@PathVariable("id") long id, @Valid Issue issue, List<Article> articles, Model model) {
         log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAdd Row called");
         log.info("issue is" + issue.toString());
-        log.info("articles are " + issue.getArticles());
+        log.info("articles are " + articles);
 
         model.addAttribute("issue", issue);
-        model.addAttribute("articles", issue.getArticles());
-        log.info("returning from addRows")
+        model.addAttribute("articles", articles);
+        log.info("returning from addRows");
         return "issue/update";
 
     }
