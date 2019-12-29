@@ -1,9 +1,7 @@
 package magazineIndex.controller;
 
-import magazineIndex.entity.Article;
 import magazineIndex.entity.Issue;
 import magazineIndex.entity.Publication;
-import magazineIndex.repository.ArticleRepository;
 import magazineIndex.repository.IssueRepository;
 import magazineIndex.repository.PublicationRepository;
 import magazineIndex.viewClasses.IssueAdd;
@@ -16,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -84,11 +83,8 @@ public class IssueController {
             model.addAttribute("publications", pRepo.findAll());
             return "issue/add";
         }
-        log.info("REGAN1");
-        //        iRepo.save(issue);
-        log.info("REGAN2");
+        //iRepo.save(issueAdd);
         model.addAttribute("issues", iRepo.findAll());
-        log.info("REGAN3");
         return "issue/list";
     }
 
@@ -100,24 +96,10 @@ public class IssueController {
         log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx showIssueForm()");
         Issue issue = iRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid issue Id:" + id));
         model.addAttribute("issue", issue);
-        model.addAttribute("articles", issue.getArticles());
-//        for (Article article: issue.getArticles())
-        return "issue/update";
-    }
-
-
-    @PostMapping(value = "issue/update/{id}", params = {"addRow"})
-    public String issueAddRow(@PathVariable("id") long id, @Valid Issue issue, List<Article> articles, Model model) {
-        log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAdd Row called");
         log.info("issue is" + issue.toString());
-        log.info("articles are " + articles);
-
-        model.addAttribute("issue", issue);
-        model.addAttribute("articles", articles);
-        log.info("returning from addRows");
         return "issue/update";
-
     }
+
 
     // process result of editing
     @PostMapping("issue/update/{id}")

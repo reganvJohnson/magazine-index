@@ -23,10 +23,13 @@
 }
 
 
-/* see me */
 td {
   border: solid;
 }
+textarea {
+   resize: both
+   }
+
 /* play with bg cells and cols ? */
 
 tr:nth-child(even) :nth-child(odd) {
@@ -44,38 +47,18 @@ tr:nth-child(odd) :nth-child(even) {
                     <form action="#" th:action="@{/issue/update/{id}(id=${issue.id})}" th:object="${issue}" method="post">
                         <div class="row">
                             <div class="form-group col-md-6">
-
                                <select th:field="*{publication}">
                                     <option th:each="xpublication : ${allPublications}" th:value="${xpublication.id}" th:text="${xpublication.title}"></option>
                                 </select>
- 
-
-
                                 <label for="year" class="col-form-label">year</label>
                                 <input type="text" th:field="*{year}" class="form-control" id="year" placeholder="Year">
                                 <label for="month" class="col-form-label">month</label>
                                 <input type="text" th:field="*{month}" class="form-control" id="month" placeholder="Month">
                                 <label for="number" class="col-form-label">number</label>
                                 <input type="text" th:field="*{number}" class="form-control" id="number" placeholder="Number">
-								<table>
-								  <colgroup>
-								    <col class="wide" /> 	 
-								    <col class="narrow" />
-								    <col class="wide" />
-								    <col class="wide" />
-								  </colgroup>
-									<thead><tr><th>Title</th><th>Author</th><th>Summary</th><th>Keywords</th><th>button</th></tr></thead>
-									<tbody>
-									  <tr th:each="article : ${articles}">
-										<td><input type="text" th:value="${article.title}" class="form-control" id="title" placeholder="title"/></td>
-										<td><input type="text" th:value="${article.author}" class="form-control" id="author" placeholder="author"/></td>
-										<td><input type="text" th:value="${article.summary}" class="form-control" id="summary" placeholder="summary"/></td>
-										<td><input type="text" th:value="${article.keywords}" class="form-control" id="keywords" placeholder="keywords"/></td>
-										<td> <button type="submit" name="addRow">Add row</button></td>
-									  </tr>
-									</tbody>
-								</table>
-	                                                                 
+                                <label for="articles" class="col-form-label">Articles</label>
+                                <textarea rows="4" cols="100" th:field="*{articles}">
+                                </textarea>
                                 <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="text-danger"></span>
                             </div>
                         </div>
