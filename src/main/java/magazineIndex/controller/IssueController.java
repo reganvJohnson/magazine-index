@@ -4,7 +4,6 @@ import magazineIndex.entity.Issue;
 import magazineIndex.entity.Publication;
 import magazineIndex.repository.IssueRepository;
 import magazineIndex.repository.PublicationRepository;
-import magazineIndex.viewClasses.IssueAdd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,29 +62,37 @@ public class IssueController {
         return "issue/list";
     }
 
-
+    @PostMapping("/issue/find")
+    public String findForm(Model model, final HttpServletRequest req) {
+        log.info("REGAN IS LOGGING ISSUESXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        String crit = req.getParameter("criteria");
+//        model.addAttribute("publications", pRepo.findAll());
+        List<Issue> issues = iRepo.findByFirstName(crit);
+        for (Issue issue: issues) {
+               log.info(issue.toString());
+        }
+        log.info("REGAN IS LOGGING ISSUESXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        model.addAttribute("issues", issues);
+        return "issue/find";
+    }
     // show blank add form
     @GetMapping("/issue/new")
     public String showNewIssueForm(Model model) {
-        model.addAttribute("issueAdd", new IssueAdd());
-        model.addAttribute("publications", pRepo.findAll());
+        model.addAttribute("issue", new Issue());
         return "issue/add";
     }
 
     // process result of filled in add form
     @PostMapping("/issue/add")
-    public String newIssue(@Valid IssueAdd issueAdd, BindingResult result, Model model) {
+    public String newIssue(@Valid Issue issue, BindingResult result, Model model) {
         log.info("newIssue called");
-        log.info(issueAdd.toString());
+        log.info(issue.toString());
 
         if (result.hasErrors()) {
-            log.info("errors were found!!!");
-            model.addAttribute("issueAdd", new IssueAdd());
-            model.addAttribute("publications", pRepo.findAll());
             return "issue/add";
         }
-        //iRepo.save(issueAdd);
-        model.addAttribute("issues", iRepo.findAll());
+        iRepo.save(issue);
+        model.addAttribute("allIssues", iRepo.findAll());
         return "issue/list";
     }
 
@@ -109,7 +117,7 @@ public class IssueController {
             issue.setId(id);
             return "issue/update";
         }
-        issue.setPublication(pRepo.findByTitle("Model Railroad Planning").get(0));
+        //issue.setPublication(pRepo.findByTitle(issue.getPublication().getId()).get(0));
         log.info("Saving issue: " + issue.toString());
         iRepo.save(issue);
         model.addAttribute("issues", iRepo.findAll());

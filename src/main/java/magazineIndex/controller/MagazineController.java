@@ -26,7 +26,6 @@ import magazineIndex.repository.PublicationRepository;
 import magazineIndex.entity.Issue;
 import magazineIndex.repository.ArticleRepository;
 import magazineIndex.repository.IssueRepository;
-import magazineIndex.viewClasses.IssueAdd;
 import magazineIndex.viewClasses.SeedsView;
 
 @Controller

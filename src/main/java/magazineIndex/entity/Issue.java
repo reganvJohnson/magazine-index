@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import magazineIndex.controller.MagazineController;
 import magazineIndex.entity.Publication;
@@ -22,7 +23,9 @@ public class Issue {
     @OneToOne @JoinColumn(name="PUBLICATION_ID", nullable=true)
     private Publication publication = null;
 
-    @Lob
+
+    @Column(length = 3000)
+    @Size(max = 3000)
     private String articles = null;
 
     private static final Logger log = LoggerFactory.getLogger(Issue.class);
@@ -47,7 +50,7 @@ public class Issue {
     public String toString() {
         return String.format(
                 "Issue[id=%d, year='%s', month='%s', number='%s', publication='%s', articles[%s]]",
-                id, year, month, number, publication== null? "something null": publication.getTitle(),
+                id, year, month, number, publication== null? "something null": publication.toString(),
                 		articles);
     }
 
