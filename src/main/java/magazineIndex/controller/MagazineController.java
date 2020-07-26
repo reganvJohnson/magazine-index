@@ -1,30 +1,18 @@
 package magazineIndex.controller;
 
-import javax.validation.Valid;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import magazineIndex.entity.Publication;
 import magazineIndex.repository.PublicationRepository;
-import magazineIndex.entity.Issue;
-import magazineIndex.repository.ArticleRepository;
 import magazineIndex.repository.IssueRepository;
 import magazineIndex.viewClasses.SeedsView;
 
@@ -33,14 +21,12 @@ public class MagazineController {
 
 private final PublicationRepository pRepo;
 private final IssueRepository iRepo;
-private final ArticleRepository aRepo;
 private static final Logger log = LoggerFactory.getLogger(MagazineController.class);
 
    @Autowired
-    public MagazineController(PublicationRepository pRepo, IssueRepository iRepo, ArticleRepository aRepo) {
+    public MagazineController(PublicationRepository pRepo, IssueRepository iRepo) {
         this.pRepo = pRepo;
         this.iRepo = iRepo;
-        this.aRepo = aRepo;
     }
 
    // index page

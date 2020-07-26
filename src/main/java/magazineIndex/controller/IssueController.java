@@ -4,6 +4,7 @@ import magazineIndex.entity.Issue;
 import magazineIndex.entity.Publication;
 import magazineIndex.repository.IssueRepository;
 import magazineIndex.repository.PublicationRepository;
+import org.hibernate.annotations.OrderBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -31,9 +33,11 @@ public class IssueController {
 
     @ModelAttribute("allIssues")
     public Iterable<Issue> populateIssues() {
-        return iRepo.findAll();
-
+        List<Issue> issues = (List<Issue>) iRepo.findAll();
+        Collections.sort(issues);
+        return issues;
     }
+
     @ModelAttribute("allPublications")
     public Iterable<Publication> populatePublications() {
         return pRepo.findAll();
@@ -42,12 +46,6 @@ public class IssueController {
     // list all the issues
     @RequestMapping(value = "/issues")
     public String showIssueList(Model model) {
-        log.info("Issues found with findAll():");
-        log.info("-------------------------------");
-        for (Issue issue : iRepo.findAll()) {
-            log.info(issue.toString());
-        }
-        log.info("");
         return "issue/list";
     }
 
@@ -67,9 +65,10 @@ public class IssueController {
         log.info("REGAN IS LOGGING ISSUESXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         String crit = req.getParameter("criteria");
 //        model.addAttribute("publications", pRepo.findAll());
-        List<Issue> issues = iRepo.findByFirstName(crit);
+        List<Issue> issues = iRepo.findBySimpleQuery(crit);
         for (Issue issue: issues) {
-               log.info(issue.toString());
+            log.info("finding issue %s" + issue.toString());
+            issue.setupForViewing(crit);
         }
         log.info("REGAN IS LOGGING ISSUESXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         model.addAttribute("issues", issues);

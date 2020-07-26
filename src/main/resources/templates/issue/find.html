@@ -17,19 +17,21 @@
 <form action="#" th:action="@{/issue/find}"  method="post">
 
     Criteria: <input type="text" name="criteria"><br>
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <th>Title</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Articles</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="issue : ${issues}">
-            <td th:text="${issue.month}"></td>
+            <td th:text="${issue.publication.title}"></td>
             <td th:text="${issue.year}"></td>
-            <td th:text="${issue.articles}"></td>
+            <td th:text="${issue.month}"></td>
+            <td> <table><tr th:each="article: ${issue.articleList}"><td th:text="${article.title}"></td></tr></table>            </td>
         </tr>
         </tbody>
     </table>

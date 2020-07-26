@@ -1,0 +1,400 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.19
+-- Dumped by pg_dump version 9.5.19
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: article_kill_me; Type: TABLE; Schema: public; Owner: magazines
+--
+
+CREATE TABLE public.article_kill_me (
+    id bigint NOT NULL,
+    author character varying(255),
+    keywords character varying(255),
+    summary character varying(255),
+    title character varying(255),
+    issue_id bigint
+);
+
+
+ALTER TABLE public.article_kill_me OWNER TO magazines;
+
+--
+-- Name: article_kill_me_id_seq; Type: SEQUENCE; Schema: public; Owner: magazines
+--
+
+CREATE SEQUENCE public.article_kill_me_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.article_kill_me_id_seq OWNER TO magazines;
+
+--
+-- Name: article_kill_me_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: magazines
+--
+
+ALTER SEQUENCE public.article_kill_me_id_seq OWNED BY public.article_kill_me.id;
+
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: magazines
+--
+
+CREATE SEQUENCE public.hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hibernate_sequence OWNER TO magazines;
+
+--
+-- Name: issue; Type: TABLE; Schema: public; Owner: magazines
+--
+
+CREATE TABLE public.issue (
+    id bigint NOT NULL,
+    month character varying(255),
+    number character varying(255),
+    year character varying(255),
+    publication_id bigint,
+    articles character varying(3000)
+);
+
+
+ALTER TABLE public.issue OWNER TO magazines;
+
+--
+-- Name: issue_id_seq; Type: SEQUENCE; Schema: public; Owner: magazines
+--
+
+CREATE SEQUENCE public.issue_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.issue_id_seq OWNER TO magazines;
+
+--
+-- Name: issue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: magazines
+--
+
+ALTER SEQUENCE public.issue_id_seq OWNED BY public.issue.id;
+
+
+--
+-- Name: publication; Type: TABLE; Schema: public; Owner: magazines
+--
+
+CREATE TABLE public.publication (
+    id bigint NOT NULL,
+    title character varying(255)
+);
+
+
+ALTER TABLE public.publication OWNER TO magazines;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.article_kill_me ALTER COLUMN id SET DEFAULT nextval('public.article_kill_me_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.issue ALTER COLUMN id SET DEFAULT nextval('public.issue_id_seq'::regclass);
+
+
+--
+-- Name: 33027; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33027');
+
+
+ALTER LARGE OBJECT 33027 OWNER TO magazines;
+
+--
+-- Name: 33028; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33028');
+
+
+ALTER LARGE OBJECT 33028 OWNER TO magazines;
+
+--
+-- Name: 33029; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33029');
+
+
+ALTER LARGE OBJECT 33029 OWNER TO magazines;
+
+--
+-- Name: 33030; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33030');
+
+
+ALTER LARGE OBJECT 33030 OWNER TO magazines;
+
+--
+-- Name: 33031; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33031');
+
+
+ALTER LARGE OBJECT 33031 OWNER TO magazines;
+
+--
+-- Name: 33032; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33032');
+
+
+ALTER LARGE OBJECT 33032 OWNER TO magazines;
+
+--
+-- Name: 33033; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33033');
+
+
+ALTER LARGE OBJECT 33033 OWNER TO magazines;
+
+--
+-- Name: 33034; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33034');
+
+
+ALTER LARGE OBJECT 33034 OWNER TO magazines;
+
+--
+-- Name: 33035; Type: BLOB; Schema: -; Owner: magazines
+--
+
+SELECT pg_catalog.lo_create('33035');
+
+
+ALTER LARGE OBJECT 33035 OWNER TO magazines;
+
+--
+-- Data for Name: article_kill_me; Type: TABLE DATA; Schema: public; Owner: magazines
+--
+
+COPY public.article_kill_me (id, author, keywords, summary, title, issue_id) FROM stdin;
+\.
+
+
+--
+-- Name: article_kill_me_id_seq; Type: SEQUENCE SET; Schema: public; Owner: magazines
+--
+
+SELECT pg_catalog.setval('public.article_kill_me_id_seq', 1, false);
+
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: magazines
+--
+
+SELECT pg_catalog.setval('public.hibernate_sequence', 16, true);
+
+
+--
+-- Data for Name: issue; Type: TABLE DATA; Schema: public; Owner: magazines
+--
+
+COPY public.issue (id, month, number, year, publication_id, articles) FROM stdin;
+3			2017	12	\N
+11	October		2018	7	Scratchbuilder's Workshop\r\nBob Walker\r\nGlorified Detail Parts\r\nScratchbuilding, detail parts, culvert, \r\n\r\nRMC/Dremel Kitbashing Award\r\nEric Goodman\r\nMKM SD45u\r\nMKM SD45u 5370, HO, superdetailing\r\n\r\nI.W. Bernheim Distillery\r\nMyles Marcovich\r\nScratchbuilding in O-scale, a story of ingenuity and necessity\r\nO-scale, Scratchbuilding, Distillery, building planning, \r\n\r\nModeling a UP SD70AH\r\nHarry K. Wong\r\nUpgrading a Walthers model to better represent the prototype\r\nHO, SD70, superdetailing, drawing\r\n\r\nNavy Gun Transport Car\r\nMont Switzer\r\nBuild an interesting flatcar and eye-catching prototypical load\r\nHO, flatcar load, navy gun
+1			2019	12	\N
+12	December		2018	7	Scratchbuilder's Workshop\r\nBob Walker\r\nConvenience\r\nscratchbuilding, casting, tools\r\n\r\nRMC/Dremel Kitbashing Award\r\nGeorge Dutka\r\nCN 48'6" Drop-end Gondola\r\nDrop-end Gondola, HO-scale, CN, superdetailing, kitbashing\r\n\r\nI.W. Bernheim Distillery\r\nMyles Marcovitch\r\nPart III: Scratchbuilding in O-scale, a story of ingenuity and necessity\r\nO-scale, scratchbuilding, distillery, building\r\n\r\nSanding Tower\r\nStephen M. Priest\r\nAdding LED illumination to a brass sanding tower\r\nSuperdetailing, Brass\r\n\r\nH39-Class Hopper\r\nJames Kinkaid\r\nH39 hopper, drawings\r\n\r\nMilwaukee Road River Sub\r\nSteve Brudlos\r\nJoin us as we tour a trainstion-era layout set in the midwest\r\nHO-scale, layout, track plan, \r\n\r\nMissouri Pacific U30C\r\nBrian Banna\r\nPart II: return with Brian Banna as he updates a Second-Generation GE\r\nHO-scale, superdetailing, diesel
+13	March		2019	7	Scratchbuilder's Workshop\r\nBob Walker\r\nMore on the Big K-27\r\nsteam engine, scratchbuilding, 1/12 scale\r\n\r\nRMC/Dremel Kitbashing Award\r\nBob Rivard\r\nModeling Soo 381\r\nHO-scale, GP-7, superdetailing\r\n\r\nJunk Yard Dogs\r\nJoseph Kreiss\r\nModeling a Contemporary Junk Yard and Recycling Centre\r\nHO-scale, junk yard, recycling, building\r\n\r\nModeling an SP GE U28C\r\nTom Machut\r\nUpgrading an Atlas model to SP specifications\r\nHO-scale, kitbashing, super detailing, U28C\r\n\r\nWeather an ex-PC Boxcar\r\nTom Machut\r\nA photographic walkthrough\r\nHO-scale, weathering, boxcar\r\n\r\nWestern Pacific 8th Sub\r\nRob Spangler\r\nTour the Prototypical layout at the 2019 NMRA National Convention\r\nHO-scale, layout\r\n\r\nLadder Track System\r\nStephen M. Priest\r\nIntroducing and Reviewing a game-changing yard ladder system\r\nHO-scale, Ladder Track, yard design
+14	May		2019	7	Hudson Terminal Railroad\r\nChristopher Brimley\r\nFeaturing many scratchbuilt structures, this freelanced N-scale waterfront terminal is inspired by New York Harbour.\r\nN-scale, harbour, ferry terminal, street running\r\n\r\nGeorgetown Ortner Hopper Kitbash\r\nScott Sanders\r\nAn out-of-production Walthers model is updated with new details and weathering to represent a unique aggregate hopper car\r\nHO-scale, kitbashing, hopper, superdetailing\r\n\r\nBuilding a Modular Scene\r\nDaniel Rappoport\r\nStudents at the Illinois Institute of Technology come together to design, build, and operate a realistic Free-mo modular scene\r\nHO-scale, free-mo \r\n\r\nScratchbuild a Brass Girder Bridge\r\nMark Juett\r\nConstructed from simple brass shapes, this deck girder bridge is a good introduction to learning scratchbuilding and soldering with metal\r\nHO-scale, scratchbuilding, bridge, brass \r\n\r\nBridgetown RPM 2019\r\nHarry K. Wong\r\nA recap of the recent Bridgetown RPM meet-up in Portland Oregon, featuring a variety of detailed models\r\nshow review\r\n\r\nRMC/Dremel Kitbashing Award\r\nMike Baker\r\nNC&STL Steel Bay Window Caboose\r\nHO-scale superdetailing, caboose\r\n\r\nScratchbuilder's Workshop\r\nBob Walker\r\nThe Tender (Finally!)\r\n1/12 scale, Tender, K-27, scratchbuilding, steam engine
+15	June		2018	15	Pulse of DCC\r\nMark Juett\r\nInstalling Sound Decoders in Old Locos\r\nDCC, decoder installationn\r\n\r\nLayout Command Control\r\nBrian Pickering\r\nSelecting LCC Hardware\r\nLCC, hardware selection
+16	May		2018	15	Hall Signals\r\nThornton Waite\r\nHistorical Equipment\r\nHall Signals, signaling\r\n\r\nModel a B&M Caboose with a little help from Adobe Photoshop Elements\r\nDick Karnes, Cy Bacchi\r\nProducing scale plans\r\nCaboose, Adobe Photoshop Elements, drawings\r\n\r\nMorrell Refrigerator Line Car\r\nThornton Waite\r\nHistory of a Morrell Refrigerator Line Car\r\nPrototype cars\r\n\r\nPulse of DCC\r\nPaul Myers\r\nInstalling Digitrax PM42 Circuit Breakers\r\nDCC, Digitrax PM42\r\n
+2			2018	12	Applying Lessons Learned\r\nDoug Tagsold\r\nThe long but successful trek back to Colorado\r\nHO-scale, layout, design, 1/72 scale\r\n\r\nInterchanging cars via car floats\r\nDoug Kirkpatrick\r\nUse the harbour to simulate cars moving on and off the railroad\r\nstaging, car float, design\r\n\r\nBellvue Reborn\r\nJohn Colombo\r\nAn N scale tribute to a busy Midwestern hub in 1957\r\ndesign, N-scale, layout\r\n\r\nModeling an M&Stl branch line\r\nClark Propst\r\nThis HO scale layut features out-and-back small-town operations\r\nHO-scale, layout, design\r\n\r\nFitting an industry to the space\r\nNeil Schofield\r\nA sprawling Ethan Allen furniture plant designed to fit an alcove\r\nHO-scale, design, building\r\n\r\nA 1990s trunk line in an 1840s basement\r\nDave Abelas\r\nConrails imaginary Onondaga Cutoff in HO became the solution to the challenges of a difficult spaced\r\nHO-scale, design, layout\r\n\r\nHow high should your railroad be?\r\nPaul J. Dolkos\r\nIt's debatable, and there are no rigid rules\r\ndesign\r\n\r\nModeling a Michingan Short Line\r\nRon Griffin\r\nFirst generation high-hood geeps still rule this 13x26 foot model railroad\r\nA Railroad you can model, HO-scale, design\r\n\r\nScene Swapping\r\nGeorge Dutka\r\nAdding variety with drop-in structures and mini-scenes\r\ndesign, swapping scenery\r\n\r\nA removable staging area\r\nTom Kilmoski\r\nIt also makes a nice outdoor photo prop\r\nstaging, ho-scale, scenery, design\r\n\r\nJust what the doctor ordered\r\nBill Neale\r\n"Why hide my best work?" a modeler asks\r\nvertical staging, display, design\r\n\r\nDesigning the Shasta Division\r\nByron Henderson\r\nA convention conversation leads to an operation-oriented HO scale railroad\r\nHO-scale, design, layout\r\n\r\nThe not-so-direct journey back to O-Scale\r\nDavid Barrow\r\nNoted HO-scale modeler David Barrow tries his hand (again) in 1/48\r\nO-scale design, layout\r\n\r\nModeling the Wabash in Canada\r\nPierre Oliver\r\nthe yard at St. Thomas, Ontario forms the nucleus of this HO railroad\r\nHO-scale, layout, design\r\n\r\n7 Things not to do\r\nTony Koester\r\nMistakes we've made - and come to regret\r\ndesign, hints\r\n
+8	July		2019	7	Salt Lake Southern\r\nGary Petersen\r\nThis freelanced route connects the Western Pacific with the Chicago & North Western through the mountains of Utah and Wyoming\r\n\r\nBurlington Express Boxcar Upgrade\r\nSantiago Pineda\r\nAn O-scale brass import is modified to represent an unusual home-built boxcar designed to operate in Burlington passenger consists\r\nO-scale, boxcar, Burlington Express, passenger\r\n\r\nEast Stroudsburg Tower\r\nOtto M. Vondrak Skip Roth\r\nBuilt in 1908 to control the interlocking at East Stroudsburg, PA., this Lakawana tower survives today as a museum\r\nTower, drawing, Lakawana\r\n\r\nNurse Tanks for Farm Scenes\r\nRicky Keil\r\nSimple 3D-printed models of anhydrous ammonia tanks provide an important detail for modern Midwestern agricultural scenes.\r\n3D-printing, modern, tanks, scratchbuilding\r\n\r\nCentral Vermont Milk Cars in HO\r\nGeorge Dutka\r\nA variety of available HO kits can be used to model Central Vermont insulated cars assigned to milk service from the 1930s to the 1960s.\r\nHO, milk, Central Vermont, kitbashing\r\n\r\nScratchbuild a Western Depot\r\nBrian Kutheis\r\nDrawings for a small Colorado & Southern station inspired the author to scratchbuild this simple train station for his narrow gauge railroad.\r\nscratchbuilding, Colorado & Southern, Drawing\r\n\r\nRMC/Drememel Kitbashing Award\r\nHunter Hughson\r\nBowser 70-ton Hopper Upgrade\r\nHO, Dremel, Kitbashing, Hopper, column\r\n\r\nScratchbuilder's Workshop \r\nBob Walker\r\nFoundations and Footprints\r\nScratchbuilding, foundations, column\r\n\r\nPainting and Weathering\r\nGeorge Riley\r\nFive Steps to Weathering With Oils\r\nWeathering, oils, column\r\n
+9	August		2019	7	  
+6			2020	13	Out and back on the Story City Branch\r\nClark Propst\r\nA branch of the Minneapolis & St. Louis provides plenty of operation\r\nHO\r\n\r\nBig mountains, small space\r\nLou Sassi\r\nFrom Colorado Springs to the Rockies, this HO layout captures the D&RGW in 13x18 feet\r\nHO, narrow gauge, D&RGW \r\n\r\nLook, Ma, no wires\r\nLee Gasparik\r\nThis 43x70 foot O scale empire runs on battery power, radio control\r\nO, radio control\r\n\r\nPensy's Elmira Branch in HO\r\nAAnthony Daniele\r\nA John Armstrong article inspired this huge layout, where PRR and NYC run joint coal trains\r\nJohn Armstrong, HO, coal, PRR, NYC\r\n\r\nMaking it mine\r\nGary Schaff\r\nDetails, scenery, and structures put the personal stamp on an HO layout built by professionals\r\nHO, professional\r\n\r\nRide the Sandy River\r\nLou Sassi\r\nAn MR contributing editor unveils his Sandy River & Rangeley Lakes\r\nON30, narrow gauge\r\n\r\nThe Blue Ridge Mountain Route\r\nTom Klimoski\r\nModeling a Georgia short line offers loads of operation in a small space\r\nShort Line, HO, operations\r\n\r\nModeling the New Haven under wire\r\nRichard Abramson\r\nAn HO scale layout frist seen in August 2004's MR reaches completion\r\nHO, catenary, NH\r\n\r\nThe winds of Cajon past\r\nDave Rickaby\r\nChildhood memories inspired a Wisconsin modeler to re-create Southern California\r\nHO\r\n\r\nWorking the Placerville Branch\r\nTom Ebert\r\nA California prototype nspired this double-deck "nolix" SP layout\r\nHO, SP\r\n\r\nViewpoint\r\nSteven Otte\r\nA sense of purpose\r\neditorial\r\n
+17	October		2017	8	Casting plaster walls for a scratchbuilt structure\r\nRaymond Howard\r\nBuild an octagonal blacksmith shop to hide a switch machine\r\nCasting, N-scale, scratchbuilding, hydrocal, cobblestone, drawing\r\n\r\nTracks in the street\r\nPaul Dolkos\r\nBuilding and operating Carroll Street on the HO-scale Baltiore Harbour district\r\nHO-scale, street running, layout, switch list operation\r\n\r\nModel simple utility poles\r\nMichael Tylick\r\nThese lineside details are easy to make with common items\r\nscenery, modeling, poles, ON30-gauge, ON30, O-scale\r\n\r\nLayout in A Weekend update\r\nPaul Boehlert\r\nWith a little more time, adding scenery and details helps bring this small switching layout to life\r\nlayout, HO-scale, modeling\r\n\r\nBuild dispatcher and operator desks\r\nDon Ball\r\nThese aren't just furniture, they support operations on an 1890s-era layout\r\nfurniture, operations\r\n\r\nABCs of DCC power district management\r\nLarry Puckett\r\nDividing your model railroad into blocks improves operation\r\nDCC, power district, \r\n\r\nStep byStep\r\nCody Grivno\r\nMake a hill from foam peanuts\r\nscenery\r\n\r\nDCC Corner\r\nLarry Puckett\r\nInstalling a LokSound decoder in a vintage Kato locomotive\r\nDCC, decoder installation, \r\n\r\nOn Operation\r\nJerry Dziedzic\r\nWhere the 21st century meets the 19th\r\noperations
+18			2019	13	Modeling the LAJ\r\nLance Mindheim\r\nA shelf layout designed as a work of art for a living space\r\nHO-scale, layout\r\n\r\nRailroading Illinois Style\r\nDave Rickaby\r\nDesigned for operation, this HO-scale 1980s Burlington Northern layout features handlaid track\r\noperation, layout, HO-scale\r\n\r\nMountain railroading on the NS\r\nLou Sassi\r\nThis N-scale layout captures coal and intermodal traffic in the '90s\r\nN-scale, layout\r\n\r\nTrains and Trolleys\r\nLou Sassi\r\nThis shelf railroad shows ven condo dwellers have room for a layout\r\nHO-scale, shelf layout, traction, trolley\r\n\r\nFrom Rico to Lizard Head\r\nDavid Rickaby\r\nGregg Condon's HOn3 Denver & Rio Grande Southern Lizard Head Division captures the lst heyday of Colorado narrow gauge\r\nHOn3-gauge, HO-scale, narrow gauge, operations\r\n\r\nMemories of Home\r\nPhil Lord\r\nA shelf layout reproduces the Lehigh Valley in the owner's hometown\r\nHO-scale, shelf layout, \r\n\r\nWhite diesels and black diamonds\r\nJohn Emley\r\nThe HO-scale Soo Line Latta Subdivision is designed for realism\r\nHO-scale, layout\r\n\r\nBusy urban railroading\r\nIan Stronach\r\nOperations are key on the CP's Montreal Terminals Division\r\noperations, HO-scale, layout\r\n\r\nLights, camera, logging\r\nLorne Neufeld, Jim Lemmond\r\nThe On30 Gold Creek Timber Co. display layout depicts backwoods railroading in a cinematic way\r\nOn30-gauge, O-scale, narrow gauge, logging \r\n\r\nNot exactly New Jersey\r\nFrank Baker\r\n The freelanced HO-scale Morristown & Erie RR, Western Division, models towns from across America\r\nHO-scale, layout, \r\n
+19	August		2014	8	Step By Step\r\nCody Grivno\r\nKitbash a brewery, part 1: Track and a paved lot for Keller Beverage Co.\r\nHO-scale, building, kitbashing\r\n\r\nScratchbuilding a cement plant from photos\r\nPelle Søeborg\r\nThoughts on modeling a large HO scale industry in a 12 foot space\r\nHO, scratchbuilding, cement plant, building\r\n\r\nUpgrading vintage AHM helium cars\r\nAlain Kap\r\nThree levels of detailing let you give these HO-scale models as much realism as you want\r\nHO, boxcar, kitbash, superdetailing, helium cars\r\n\r\nDetails to make your rail yard realistic\r\nHorst Meier\r\nVegetation, spilled loads, roads, and tras can add texture and interest\r\nHO, scenery, roads, rail yard, details\r\n\r\nSecond time around the Rathole Division\r\nLou Sassi\r\nMountain scenes and scratchbuilt structures highlight Bob Lawson's new HO-scale Southern Ry.\r\nHO-scale, layout\r\n\r\nMake a tree bark cliff face\r\nJohn Longhurst\r\nTree bark can be used instead of casting plaster molds\r\nHO-scale, scenery, cliff\r\n\r\nBuilt by the pros\r\nGary Schaff\r\nOne modeler relates his experience hiring a professional to make his HO-scale layout\r\nHO-scale, professional, layout\r\n\r\nWorkshop Tips\r\nJim Hediger\r\nModern diesel identification\r\ndiesel, prototype\r\n\r\nDCC Corner\r\nMike Polsgrove\r\nAdding a DCC accessory bus\r\nDCC, accessory bus\r\n\r\nThe Operators\r\nAndy Sperandeo\r\nby the numbers\r\nidentifying trains for operations.
+20	January		2019	7	Scratchbuilder's Workshop\r\nBob Walker\r\nUp on the roof - roof details\r\nscratchbuilding, roof, building\r\n\r\nRMC/Dremel Kitbashing Award\r\nJames Rose\r\nElectric sharks\r\nHO-scale, PRR shark, kitbashing, superdetailing\r\n\r\n1st Ave. Freight House\r\nLance Mindheim\r\nBuilding structures from photographic images\r\nN-scale, scratchbuilding, buildings\r\n\r\nReading MU Cars\r\nJames R. Rose\r\nA look at Reading Self-propelled Passenger Cars\r\nMU cars, drawing, self-propelled passenger car \r\n\r\nA last look at the AIDRY\r\nDan Munson\r\nA final look at Chuck Hitchcock's Argentine Industrial District Ry.\r\nHO-scale, layout\r\n\r\nTsunami for a Blue Box\r\nKeith Robinson\r\nComplete installation of Tsunami sound in an Athearn Blue Box locomotive\r\nDCC, tsunami decoder installation, \r\n\r\nMissouri Pacific U30C\r\nBrian Banna\r\nPart III: Return with Brian Banna as he updates a second-generation GE\r\nHO-scale, GE U30C, superdetailing, 
+21	June		2019	7	Utah Colorado Western\r\nLee Nicholas\r\nInspired by Southern Pacific, Rio Grande, and Utah Railway, this Western-themed HO-scale bridge route is designed for operations, HO-scale, layout, CTC\r\n\r\nBaja tour bus in O-scale\r\nGary Beatty\r\nBy adding some colourful decoratino and some scratchbuilt details, you can create an interesting vehicle to serve your vacationing tourists\r\nO-scale, superdetailing, bus \r\n\r\nBuild an LCC-based interlocking\r\nBret Overholtzer\r\nWe unleash the new Layout Command Control protocol to quickly and easily control a complex interlocking junction\r\nLCC, interlocking, \r\n\r\nHook-and-loop fasteners for your backdrops\r\nJoseph Kriess\r\nSpoiler alert: It's Velcro\r\nscenery, backdrop\r\n\r\n"Electrify" a Southern Pacific Diesel\r\nTrevor Marshall\r\nA classic Walthers SW1 is rebuilt with an upgraded drivetrain, DCC and sound, and details for working in trolley territory\r\nHO-scale, Trevor Marshall, diesel, superdetailing, Southern Pacific, SP, EMD SW1\r\n\r\nRMC/Dremel Kitbashing Award\r\nRoss Dando\r\nRebuilt Rock Island Gondola\r\nHO-scale, superdetailing, gondola, Rock Island,\r\n\r\nScratchbuilder's Workshop\r\nBob Walker\r\nRetaining Walls\r\nretaining walls scratchbuilding, \r\n\r\nTest Track\r\nHarry K. Wong\r\nEMD SD40T-2 'Tunnel Motor' Locomotive by ScaleTrains.com\r\nEMD SD40T-2, HO-scale, review, ScaleTrains\r\n\r\ntest Track\r\nGeorge Riley\r\nPullman Osgood Bradley and 8600-series Coaches by Rapido Trains\r\nPullman, review, Osgood Bradley, 8600-series, Rapido Trains, review, HO-scale\r\n\r\n
+22	Winter	Build a Small Model Railroad	2018	16	Narrow Gauge logging in less than 4x7 feet\r\nDave Jacobs\r\nThis compact layout has a lot to offer\r\nHO-scale, Narrow Gauge, layout, logging\r\n\r\nSanta Fe and Souther Pacific in a spare room\r\nHns Wolfram Nikolaus\r\nTehachapi in the 1960s imspired the freelanced HO-scale Oak Valley RR\r\nTehachapi, Santa Fe, SF, Southern Pacific, SP, 1960s, layout, HO-scale\r\n\r\nBig time railroading on a door or two\r\nDave Vollmer\r\nThe N-scale Pennsylvania RR Juniata Division is built for mobility\r\nPennsylvania RR, PRR, N-scale, portable\r\n\r\nVersatile room-size layout\r\nIan Rice\r\nTwo upper-Midwest railroads cross in a typical town\r\nChicago % North Western, C&NW, HO-scale, layout, freelance, 1940s\r\n\r\nLots of switching in a small space\r\nFrank DiFalco\r\nA module that serves as a complete layout or part of a larger system\r\nHO-scale, layout, module, CSX\r\n\r\nAlice Street in 4x8 feet\r\nAndy Sperandeo\r\nA highly prototypical N-scale track plan for a Santa Fe rail-marine operation in Oakland, Calif.\r\nN-scale, layout, AT&SF, Atchison, Topeka & Santa Fe, car ferry, rail-marine\r\n\r\nRailroading on an Apartment Shelf\r\nAn HO-scale short line that fits neatly along a living-room wall\r\nRuss Rettig\r\nHO-scale, layout, Grand Trunk & Indiana, , freelance, 1970s, \r\n\r\nHow to build lightweight sectional benchwork\r\nLou Sassi\r\nCombine commercially available kits with two types of foam for a sturdy foundation\r\nbenchwork, construction\r\n\r\nBuild the Virginian: plan and operation\r\nDavid Popp\r\nPart 1: Hauling coal onthe HO-scale Virginian Ry.\r\nHO-scale, project layout, Virginian, 1955, design\r\n\r\nBuild the Virginian: Benchwork\r\nDavid Popp\r\nPart 2: Building solid benchwork that's easy to expand for out HO-scale layout\r\nHO-scale, project layout, Virginian, 1955, benchwork\r\n\r\nBuild the Virginian: Track laying and wiring\r\nDavid Popp\r\nPart 3: Getting trains up and running on our 4x8 foot layout\r\nHO-scale, project layout, Virginian, 1955, track laying, wiring\r\n\r\nBuild the Virginian: Scenery\r\nDavid Popp\r\nPart 4: Our HO-scale layout gets some mountain scenery\r\nHO-scale, project layout, Virginian, 1955, scenery\r\n\r\nBuild the Virginian: Structures\r\nDavid Popp\r\nPart 5: Coal mines, company houses, and more complete our project railroad\r\nHO-scale, project layout, Virginian, 1955, structures\r\n
+23	June		2012	8	Modeling the sounds of passenger diesels\r\nBob Kingsnorth\r\nSimulating the sound of Amtrak front-end power\r\nDCC sound, Amtrak\r\n\r\nDCC sound or PCC streetcars\r\nFred Miller\r\nAny prototype recordings can become sound projects for programmable decoders\r\nDCC sound, streetcars\r\n\r\nAdd Sound to a modern Diesel Locomotive\r\nPelle Søeborg\r\nTips for installing a DCC sound decoder in a Kato HO-scale model\r\nDCC sound, ESU LokSound decoder installation, tips, Kato  AC4400CW\r\n\r\nDCC Corner\r\nDavid Popp\r\nSound for N-scale F-units\r\nN-scale, DCC sound, decoder installation, Kato F7A\r\n\r\nA railraod renewed\r\nBob McLaughlin\r\nNew scenery and DCC help bring this 1970s HO-scale display layout back to life\r\nHO-scale, layout, DCC, narrow gauge\r\n\r\nA modern enginehouse\r\nHarold W. Russell\r\nThis structure was built for the Livonia, Avon & Lakeville RR\r\nBuilding, HO-scale, enginehouse, drawing\r\n\r\nRealistic operations on a freelanced layout\r\nPaul J. Dolkos\r\nThe Tennessee Central inspired this 28x32 foot HO-scale layout\r\nHO-scale, layout, 1970\r\n\r\nScratchbuild a loading stand\r\nDennis Daniels\r\nThis simple trackside detail gives workers access to car roofs\r\nscratchbuilding, HO-scale, trackside details\r\n\r\nSupport scenery with foam rubber\r\nJim Richards\r\nFor tricky, narrow spaces, a flexible material fills the gap\r\nscenery, layout construction, foam rubber\r\n\r\nAdd a valence and dust cover\r\nHoward Lloyd\r\nEasy-to-hang panels and plastic curtains frame viewpoints and keep layouts clean\r\nlighting, valence, dust cover\r\n\r\nFrom plain pickup to hi-rail truck\r\nJoseph Kreiss\r\nUse similar detailing techniques to model 4x4 off-road vehicles\r\nHO-scale, hi-rail, detailing\r\n\r\nInformation Desk\r\nJim Hediger\r\nTrackside structure details\r\nHO-scale, buildings, details\r\n\r\nWorkshop tips\r\nJim Hediger\r\nFalse floors make load swapping easy\r\nHO-scale, car loads, details\r\n\r\nStep by Step\r\nPelle Søeborg\r\nBuild an animated grade crossing\r\nHO-scale, crossing gates\r\n\r\nProduct Reviews\r\nDana Kawala\r\nHO-scale Athearn GP7 with upgraded tooling\r\nHO-scale, Athern GP7, review\r\n\r\nProduct Reviews\r\nDana Kawala\r\nCon-cor Burlington route Zephyrs with sound in HO-scale and N-scale\r\nHO-scale, Burlington Zephyr, review\r\n\r\nProduct Reviews\r\nSteven Otte\r\nAccurail 40-foot plug door steel reefer kit in HO-scale\r\nAccurail, HO-scale, reefer, review\r\n\r\nProduct Reviews\r\nDana Kawala\r\nFlatcar in HO from BLMA has era-specific details\r\nHO-scale, flatcar, review\r\n\r\nThe operators\r\nAndy Sperandeo\r\nDispatchers and operators, part 2\r\noperations, dispatcher
+24	December		2013	8	Perch birds on your power lines\r\nGerry Leone\r\nIt's simple to add this often-overlooked detail to your overhead wires\r\nTrackside details, \r\n\r\nKitbash a Canadian Pacific RS-3 in HO scale\r\nDon Janes\r\nCombine a Bowser body and an Atlas Chassis to build an Alco workhorse\r\nHO-scale, kitbash, RS-3, Bowser, Atlas, CP, Canadian Pacific, superdetail\r\n\r\nA sectional railroad on an aluminum frame\r\n\\Mike Pagano\r\nBased on two MR designs, this N-scale layout depicts the Pacific Northwest\r\nN-scale, layout, aluminum frame, 1960, \r\n\r\nModeling Miami's Downtown Spur\r\nLance Mindheim\r\nAn urban light-industrial setting provides plenty of switching\r\nCSX, HO-scale, 2007, industrial spur, design\r\n\r\nThe mechanics of train dspatching\r\nAndy Sperandeo\r\nHow to do timetable-and-train-order dispatching, including what you need\r\ntimetable-and-train order, operations, timetable, train-order\r\n\r\nA rail-marine connection in the Pacific Northwest\r\nBowen Tubbs\r\nA remote Milwaukee Road branch inspired this 12x16 foot track plan\r\nMilwaukee Road, HO-scale, 1970s, layout, rail-marine\r\n\r\nNew life for old boxcars\r\nAl Warren\r\nFollowing the Chicago & North Western's example to repurpose 40-foot cars as sheds\r\nChicago & North Western, C&NW, structures, lineside detail\r\n\r\nInformation Desk\r\nJim Hediger\r\nLoading ramps for double deck stockcars\r\nHO-scale, trackside details\r\n\r\nWorkshop tips\r\nJim Hediger\r\nAn easy repair stops intermittent shorts, Cement and glue choices\r\nDCC, wiring, track problems, glue selection\r\n\r\nStep by Step\r\nCody Grivno\r\nHow to build a plastic structure\r\nBuilding, structures, construction, tips\r\n\r\nDCC Corner\r\nMike Polsgrove\r\nHow sound decoders work\r\nDCC sound\r\n\r\nThe operators\r\nAndy Sperandeo\r\nCard files for car cards\r\noperations, car cards, card files\r\n\r\nTrains of thought\r\nTony Koester\r\nMaking sure there's an escape route\r\nphysical escape planning\r\n\r\nProduct Reviews\r\nDana Kawala\r\nHO scale &6b from Broadway Limited is a smoke-and-sound-equipped powerhouse\r\nHO-scale, review, steam engine, Broadway Limited, Y6b 2-8-8-2, N&W\r\n\r\nProduct Reviews\r\nSteven Otte\r\nAtlas offers N-scale SD60 in new schemes\r\nN-scale, Atlas, review, Diesel, SD60\r\n\r\nProduct Reviews\r\nJim Hediger\r\nWalthers HO-scale 14,000-gallon sulfur tank car matches its modern prototype\r\nHO-scale, review, tank car, Walthers\r\n\r\nProduct Reviews\r\nCody Grivno\r\nTangent HO-scale Pullman-Standard 4750 covered hopper\r\nHO-scale, review, Tangent, Pullman-standard 4750 covered hopper\r\n
+\.
+
+
+--
+-- Name: issue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: magazines
+--
+
+SELECT pg_catalog.setval('public.issue_id_seq', 24, true);
+
+
+--
+-- Data for Name: publication; Type: TABLE DATA; Schema: public; Owner: magazines
+--
+
+COPY public.publication (id, title) FROM stdin;
+7	Railroad Model Craftsman
+8	Model Railroader
+9	White Dwarf
+12	Model Railroad Planning
+13	Great Model Railroads
+15	NMRA Magazine
+16	Model Railroader Special Issue
+\.
+
+
+--
+-- Data for Name: BLOBS; Type: BLOBS; Schema: -; Owner: 
+--
+
+BEGIN;
+
+SELECT pg_catalog.lo_open('33027', 131072);
+SELECT pg_catalog.lowrite(0, '\x313233343536');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33028', 131072);
+SELECT pg_catalog.lowrite(0, '\x3132333435360d0a7468697320676f6573200d0a686572650d0a');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33029', 131072);
+SELECT pg_catalog.lowrite(0, '\x4f757420616e64206261636b206f6e207468652053746f72792043697479204272616e63680d0a436c61726b2050726f7073740d0a41206272616e6368206f6620746865204d696e6e6561706f6c697320262053742e204c6f7569732070726f766964657320706c656e7479206f66206f7065726174696f6e0d0a484f0d0a0d0a426967206d6f756e7461696e732c20736d616c6c2073706163650d0a4c6f752053617373690d0a46726f6d20436f6c6f7261646f20537072696e677320746f2074686520526f636b6965732c207468697320484f206c61796f75742063617074757265732074686520442652475720696e20313378313820666565740d0a484f2c206e6172726f772067617567652c20442652475720');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33030', 131072);
+SELECT pg_catalog.lowrite(0, '\x4f757420616e64206261636b206f6e207468652053746f72792043697479204272616e63680d0a436c61726b2050726f7073740d0a41206272616e6368206f6620746865204d696e6e6561706f6c697320262053742e204c6f7569732070726f766964657320706c656e7479206f66206f7065726174696f6e0d0a484f0d0a0d0a426967206d6f756e7461696e732c20736d616c6c2073706163650d0a4c6f752053617373690d0a46726f6d20436f6c6f7261646f20537072696e677320746f2074686520526f636b6965732c207468697320484f206c61796f75742063617074757265732074686520442652475720696e20313378313820666565740d0a484f2c206e6172726f772067617567652c204426524757200d0a0d0a4c6f6f6b2c204d612c206e6f2077697265730d0a4c656520476173706172696b0d0a5468697320343378373020666f6f74204f207363616c6520656d706972652072756e73206f6e206261747465727920706f7765722c20726164696f20636f6e74726f6c0d0a4f2c20726164696f20636f6e74726f6c0d0a');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33031', 131072);
+SELECT pg_catalog.lowrite(0, '\x313233');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33032', 131072);
+SELECT pg_catalog.lowrite(0, '\x4f757420616e64206261636b206f6e207468652053746f72792043697479204272616e63680d0a436c61726b2050726f7073740d0a41206272616e6368206f6620746865204d696e6e6561706f6c697320262053742e204c6f7569732070726f766964657320706c656e7479206f66206f7065726174696f6e0d0a484f0d0a0d0a426967206d6f756e7461696e732c20736d616c6c2073706163650d0a4c6f752053617373690d0a46726f6d20436f6c6f7261646f20537072696e677320746f2074686520526f636b6965732c207468697320484f206c61796f75742063617074757265732074686520442652475720696e20313378313820666565740d0a484f2c206e6172726f772067617567652c204426524757200d0a0d0a4c6f6f6b2c204d612c206e6f2077697265730d0a4c656520476173706172696b0d0a5468697320343378373020666f6f74204f207363616c6520656d706972652072756e73206f6e206261747465727920706f7765722c20726164696f20636f6e74726f6c0d0a4f2c20726164696f20636f6e74726f6c0d0a');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33033', 131072);
+SELECT pg_catalog.lowrite(0, '\x4f757420616e64206261636b206f6e207468652053746f72792043697479204272616e63680d0a436c61726b2050726f7073740d0a41206272616e6368206f6620746865204d696e6e6561706f6c697320262053742e204c6f7569732070726f766964657320706c656e7479206f66206f7065726174696f6e0d0a484f0d0a0d0a426967206d6f756e7461696e732c20736d616c6c2073706163650d0a4c6f752053617373690d0a46726f6d20436f6c6f7261646f20537072696e677320746f2074686520526f636b6965732c207468697320484f206c61796f75742063617074757265732074686520442652475720696e20313378313820666565740d0a484f2c206e6172726f772067617567652c204426524757200d0a0d0a4c6f6f6b2c204d612c206e6f2077697265730d0a4c656520476173706172696b0d0a5468697320343378373020666f6f74204f207363616c6520656d706972652072756e73206f6e206261747465727920706f7765722c20726164696f20636f6e74726f6c0d0a4f2c20726164696f20636f6e74726f6c0d0a0d0a50656e7379277320456c6d697261204272616e636820696e20484f0d0a41416e74686f6e792044616e69656c650d0a41204a6f686e2041726d7374726f6e672061727469636c6520696e73706972656420746869732068756765206c61796f75742c2077686572652050525220616e64204e59432072756e206a6f696e7420636f616c20747261696e730d0a4a6f686e2041726d7374726f6e672c20484f2c20636f616c2c205052522c204e59430d0a0d0a');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33034', 131072);
+SELECT pg_catalog.lowrite(0, '\x4f757420616e64206261636b206f6e207468652053746f72792043697479204272616e63680d0a436c61726b2050726f7073740d0a41206272616e6368206f6620746865204d696e6e6561706f6c697320262053742e204c6f7569732070726f766964657320706c656e7479206f66206f7065726174696f6e0d0a484f0d0a0d0a426967206d6f756e7461696e732c20736d616c6c2073706163650d0a4c6f752053617373690d0a46726f6d20436f6c6f7261646f20537072696e677320746f2074686520526f636b6965732c207468697320484f206c61796f75742063617074757265732074686520442652475720696e20313378313820666565740d0a484f2c206e6172726f772067617567652c204426524757200d0a0d0a4c6f6f6b2c204d612c206e6f2077697265730d0a4c656520476173706172696b0d0a5468697320343378373020666f6f74204f207363616c6520656d706972652072756e73206f6e206261747465727920706f7765722c20726164696f20636f6e74726f6c0d0a4f2c20726164696f20636f6e74726f6c0d0a0d0a50656e7379277320456c6d697261204272616e636820696e20484f0d0a41416e74686f6e792044616e69656c650d0a41204a6f686e2041726d7374726f6e672061727469636c6520696e73706972656420746869732068756765206c61796f75742c2077686572652050525220616e64204e59432072756e206a6f696e7420636f616c20747261696e730d0a4a6f686e2041726d7374726f6e672c20484f2c20636f616c2c205052522c204e59430d0a0d0a4d616b696e67206974206d696e650d0a47617279205363686166660d0a44657461696c732c207363656e6572792c20616e642073747275637475726573207075742074686520706572736f6e616c207374616d70206f6e20616e20484f206c61796f7574206275696c742062792070726f66657373696f6e616c730d0a484f2c2070726f66657373696f6e616c0d0a0d0a52696465207468652053616e64792052697665720d0a4c6f752053617373690d0a416e204d5220636f6e747269627574696e6720656469746f7220756e7665696c73206869732053616e647920526976657220262052616e67656c6579204c616b65730d0a4f4e33302c206e6172726f772067617567650d0a0d0a54686520426c7565205269646765204d6f756e7461696e20526f7574650d0a546f6d204b6c696d6f736b690d0a4d6f64656c696e6720612047656f726769612073686f7274206c696e65206f6666657273206c6f616473206f66206f7065726174696f6e20696e206120736d616c6c2073706163650d0a53686f7274204c696e652c20484f2c206f7065726174696f6e730d0a0d0a4d6f64656c696e6720746865204e657720486176656e20756e64657220776972650d0a5269636861726420416272616d736f6e0d0a416e20484f207363616c65206c61796f7574206672697374207365656e20696e2041756775737420323030342773204d52207265616368657320636f6d706c6574696f6e0d0a484f2c20636174656e6172792c204e480d0a0d0a5468652077696e6473206f662043616a6f6e20706173740d0a44617665205269636b6162790d0a4368696c64686f6f64206d656d6f7269657320696e737069726564206120576973636f6e73696e206d6f64656c657220746f2072652d63726561746520536f75746865726e2043616c69666f726e69610d0a484f0d0a0d0a576f726b696e672074686520506c6163657276696c6c65204272616e63680d0a546f6d2045626572740d0a412043616c69666f726e69612070726f746f74797065206e737069726564207468697320646f75626c652d6465636b20226e6f6c697822205350206c61796f75740d0a484f2c2053500d0a0d0a56696577706f696e740d0a53746576656e204f7474650d0a412073656e7365206f6620707572706f73650d0a656469746f7269616c');
+SELECT pg_catalog.lo_close(0);
+
+SELECT pg_catalog.lo_open('33035', 131072);
+SELECT pg_catalog.lowrite(0, '\x53616c74204c616b6520536f75746865726e0d0a4761727920506574657273656e0d0a5468697320667265656c616e63656420726f75746520636f6e6e6563747320746865205765737465726e2050616369666963207769746820746865204368696361676f2026204e6f727468205765737465726e207468726f75676820746865206d6f756e7461696e73206f66205574616820616e642057796f6d696e670d0a0d0a4275726c696e67746f6e204578707265737320426f7863617220557067726164650d0a53616e746961676f2050696e6564610d0a416e204f2d7363616c6520627261737320696d706f7274206973206d6f64696669656420746f20726570726573656e7420616e20756e757375616c20686f6d652d6275696c7420626f786361722064657369676e656420746f206f70657261746520696e204275726c696e67746f6e2070617373656e67657220636f6e73697374730d0a4f2d7363616c652c20626f786361722c204275726c696e67746f6e20457870726573732c2070617373656e6765720d0a0d0a45617374205374726f7564736275726720546f7765720d0a4f74746f204d2e20566f6e6472616b20536b697020526f74680d0a4275696c7420696e203139303820746f20636f6e74726f6c2074686520696e7465726c6f636b696e672061742045617374205374726f756473627572672c2050412e2c2074686973204c616b6177616e6120746f77657220737572766976657320746f6461792061732061206d757365756d0d0a546f7765722c2064726177696e672c204c616b6177616e610d0a0d0a4e757273652054616e6b7320666f72204661726d205363656e65730d0a5269636b79204b65696c0d0a53696d706c652033442d7072696e746564206d6f64656c73206f6620616e687964726f757320616d6d6f6e69612074616e6b732070726f7669646520616e20696d706f7274616e742064657461696c20666f72206d6f6465726e204d69647765737465726e206167726963756c747572616c207363656e65732e0d0a33442d7072696e74696e672c206d6f6465726e2c2074616e6b732c20736372617463686275696c64696e670d0a0d0a43656e7472616c205665726d6f6e74204d696c6b204361727320696e20484f0d0a47656f726765204475746b610d0a412076617269657479206f6620617661696c61626c6520484f206b6974732063616e206265207573656420746f206d6f64656c2043656e7472616c205665726d6f6e7420696e73756c6174656420636172732061737369676e656420746f206d696c6b20736572766963652066726f6d2074686520313933307320746f207468652031393630732e0d0a484f2c206d696c6b2c2043656e7472616c205665726d6f6e742c206b697462617368696e670d0a0d0a536372617463686275696c642061205765737465726e204465706f740d0a427269616e204b7574686569730d0a44726177696e677320666f72206120736d616c6c20436f6c6f7261646f202620536f75746865726e2073746174696f6e20696e7370697265642074686520617574686f7220746f20736372617463686275696c6420746869732073696d706c6520747261696e2073746174696f6e20666f7220686973206e6172726f77206761756765207261696c726f61642e0d0a736372617463686275696c64696e672c20436f6c6f7261646f202620536f75746865726e2c2044726177696e670d0a0d0a524d432f4472656d656d656c204b697462617368696e672041776172640d0a48756e7465722048756768736f6e0d0a426f777365722037302d746f6e20486f7070657220557067726164650d0a484f2c204472656d656c2c204b697462617368696e672c20486f707065722c20636f6c756d6e0d0a0d0a536372617463686275696c646572277320576f726b73686f70200d0a426f622057616c6b65720d0a466f756e646174696f6e7320616e6420466f6f747072696e74730d0a536372617463686275696c64696e672c20666f756e646174696f6e732c20636f6c756d6e0d0a0d0a5061696e74696e6720616e642057656174686572696e670d0a47656f7267652052696c65790d0a4669766520537465707320746f2057656174686572696e672057697468204f696c730d0a57656174686572696e672c206f696c732c20636f6c756d6e0d0a');
+SELECT pg_catalog.lo_close(0);
+
+COMMIT;
+
+--
+-- Name: article_kill_me_pkey; Type: CONSTRAINT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.article_kill_me
+    ADD CONSTRAINT article_kill_me_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: issue_pkey; Type: CONSTRAINT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.issue
+    ADD CONSTRAINT issue_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: publication_pkey; Type: CONSTRAINT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.publication
+    ADD CONSTRAINT publication_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: fked33i0py3o0kbtx7nsfysgwf2; Type: FK CONSTRAINT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.article_kill_me
+    ADD CONSTRAINT fked33i0py3o0kbtx7nsfysgwf2 FOREIGN KEY (issue_id) REFERENCES public.issue(id);
+
+
+--
+-- Name: fko905124kb2egeqctbjet9ds33; Type: FK CONSTRAINT; Schema: public; Owner: magazines
+--
+
+ALTER TABLE ONLY public.issue
+    ADD CONSTRAINT fko905124kb2egeqctbjet9ds33 FOREIGN KEY (publication_id) REFERENCES public.publication(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

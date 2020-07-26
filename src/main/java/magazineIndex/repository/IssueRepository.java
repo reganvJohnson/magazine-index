@@ -12,8 +12,6 @@ public interface IssueRepository extends CrudRepository<Issue, Long> {
     //In this case a query annotation is not need since spring constructs the query from the method name
 	//public List<ReleaseDateType> findByCacheMedia_Id(Integer IssueTitle
 
-        @Query("FROM Issue where articles like('%Armstrong%')")
-//        @Query("FROM Issue where year = '2020'")
-//@Query("FROM Issue where articles ='33028'")
-    List<Issue> findByFirstName(String firstName);
+    @Query("FROM Issue where lower(articles) like lower(concat('%', ?1,'%'))")
+    List<Issue> findBySimpleQuery(String firstName);
 }

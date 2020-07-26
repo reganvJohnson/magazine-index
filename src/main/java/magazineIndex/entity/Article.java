@@ -1,40 +1,12 @@
 package magazineIndex.entity;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-
-@Entity
 public class Article {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    
-    @ManyToOne
-    @JoinColumn(name="issue_id")
-    private Issue issue;
-    
-    public Issue getIssue() {
-		return issue;
-		}
+    private String title;
+	private String author;
+	private String summary;
+	private String keywords;
 
-	public void setIssue(Issue issue) {
-		this.issue = issue;
-	}
-
-    String title;
-    String author;
-    String summary;
-    String keywords;
-
-    public Article(Issue issue, String title, String author, String Summary, String keywords) {
-    	setIssue(issue);
+    public Article(String title, String author, String Summary, String keywords) {
     	setTitle(title);
     	setAuthor(author);
     	setSummary(summary);
@@ -46,16 +18,7 @@ public class Article {
         setAuthor("");
         setSummary("");
         setKeywords("");
-        setIssue(null);
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getTitle() {
 		return title;
@@ -91,7 +54,7 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", author=" + author + ", summary=" + summary + ", keywords="
+		return "Article [title=" + title + ", author=" + author + ", summary=" + summary + ", keywords="
 				+ keywords + "]";
 	}
 }
